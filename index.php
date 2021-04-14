@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>Welcome to my blog site</h1>
+    <h2>Well done!  you can start template setup process now</h2>
 </body>
 </html>
