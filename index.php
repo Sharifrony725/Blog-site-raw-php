@@ -1,4 +1,35 @@
+<?php 
+session_start();
+if(isset($_SESSION['user_id'])){
+ //"header('location : index.php ')";
+  echo "<script>window.location.href='dashboard.php';</script>";
+}
+?>
+<?php
+$db = mysqli_connect("localhost","root","","blog-site");
+if(isset($_POST['login'])){
+  $username = mysqli_real_escape_string($db, $_POST['username']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
+  
+  $sql = "SELECT * FROM users WHERE username='$username' AND password= '$password'";
+    $run = mysqli_query($db , $sql);
+    if(mysqli_num_rows($run) ==1){
+     
+      $row = mysqli_fetch_assoc($run);
+     //session_start();
+      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['name'] = $row['name']; 
+      $_SESSION['user_name'] = $row['username'];
+   echo "<script>window.location.href='dashboard.php';</script>";
 
+  }else{
+      $loginError = "Username or Password Invalid";
+      echo $loginError;
+  }
+ }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from thevectorlab.net/flatlab-4/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Jul 2019 15:06:09 GMT -->
@@ -28,7 +59,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="" method="POST">
+      <form class="form-signin" action="#" method="POST">
         <h2 class="form-signin-heading">sign in now</h2>
         <div class="login-wrap">
             <input type="text" class="form-control" placeholder="Username" autofocus name="username">
