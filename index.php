@@ -49,7 +49,7 @@ if(isset($_SESSION['user_id'])){
             </label>
             <button class="btn btn-lg btn-login btn-block" type="submit" name="login">Log In</button>
             
-           <p><?= ucwords( isset($loginError)? $loginError:'')  ?></p>
+           <p><?= ucwords(isset($loginError)? $loginError:'')  ?></p>
 
            <div class="registration">
                 Don't have an account yet?

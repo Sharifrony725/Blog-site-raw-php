@@ -28,27 +28,27 @@
 
     <div class="container">
 
-      <form class="form-signin" action="dashboard.php">
+      <form class="form-signin" method="POST" action="registration_action.php">
         <h2 class="form-signin-heading">registration now</h2>
         <div class="login-wrap">
             <p>Enter your personal details below</p>
-            <input type="text" class="form-control" placeholder="Full Name" autofocus>
-            <input type="text" class="form-control" placeholder="Address" autofocus>
-            <input type="text" class="form-control" placeholder="Email" autofocus>
-            <input type="text" class="form-control" placeholder="City/Town" autofocus>
+            <input type="text" name="full_name" class="form-control" placeholder="Full Name" autofocus>
+            <input type="text" class="form-control" placeholder="Address" name="address" autofocus>
+            <input type="text" class="form-control" placeholder="Email" name="email" autofocus>
+            <input type="text" class="form-control" placeholder="City/Town" name="city" autofocus>
             <div class="radios">
                 <label class="label_radio col-lg-6 col-sm-6" for="radio-01">
-                    <input name="sample-radio" id="radio-01" value="1" type="radio" checked /> Male
+                    <input name="gender" id="gender" value="1" type="radio"  checked /> Male
                 </label>
                 <label class="label_radio col-lg-6 col-sm-6" for="radio-02">
-                    <input name="sample-radio" id="radio-02" value="1" type="radio" /> Female
+                    <input name="gender" id="gender" value="2" type="radio"/> Female
                 </label>
             </div>
 
             <p> Enter your account details below</p>
-            <input type="text" class="form-control" placeholder="User Name" autofocus>
-            <input type="password" class="form-control" placeholder="Password">
-            <input type="password" class="form-control" placeholder="Re-type Password">
+            <input type="text" class="form-control" placeholder="User Name" name="user_name" autofocus>
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <input type="password" class="form-control" placeholder="Re-type Password" name="confirm_password">
             <label class="checkbox">
                 <input type="checkbox" value="agree this condition"> I agree to the Terms of Service and Privacy Policy
             </label>
