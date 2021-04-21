@@ -1,14 +1,15 @@
  <?php 
+ session_start();
  require_once 'header.php';
- // session_start();
-// if(isset($_SESSION['user_id'])){
-//     //header('location:index.php');
-//     echo "<script>window.location.href='index.php';</script>";
-// } 
+ if(!isset($_SESSION['user_id'])){
+  echo "<script>window.location.href='index.php';</script>";
+ } 
 ?>
             <!--state overview start-->
               <div class="row state-overview">
-                  <div class="col-lg-3 col-sm-6">
+              <h1 style="margin: auto;"><?php echo $_SESSION['name']?></h1>
+              <?php  ?>
+                  <!-- <div class="col-lg-3 col-sm-6">
                       <section class="card">
                           <div class="symbol terques">
                               <i class="fa fa-user"></i>
@@ -59,7 +60,7 @@
                               <p>Total Profit</p>
                           </div>
                       </section>
-                  </div>
+                  </div> -->
               </div>
               <!--state overview end-->
 

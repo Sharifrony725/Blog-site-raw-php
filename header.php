@@ -1,10 +1,4 @@
-<?php 
-// session_start();
-// if(isset($_SESSION['user_id'])){
-//     //header('location:index.php');
-//     echo "<script>window.location.href='index.php';</script>";
-// } 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,10 +1,9 @@
-<?php 
+ <?php 
 session_start();
 if(isset($_SESSION['user_id'])){
- //header('location : index.php ');
-  echo "<script>window.location.href='crendential_check.php';</script>";
+  echo "<script>window.location.href='dashboard.php';</script>";
 } 
-?>
+?> 
 
 <!DOCTYPE html>
 <html lang="en">

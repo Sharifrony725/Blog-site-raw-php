@@ -1,8 +1,4 @@
 <?php 
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
-// exit;
 require_once'db_config.php';
 $full_name = trim($_POST['full_name']);
 $address = trim($_POST['address']);
@@ -18,7 +14,13 @@ $sql = "INSERT INTO users(full_name, address, username, email, city, gender, pas
 
  $result = mysqli_query($db_connection,$sql);
     if($result){
-       header('location:dashboard.php');
+        $last_id = mysqli_insert_id($db_connection);
+        session_start();
+       $_SESSION['user_id'] = $last_id;
+       $_SESSION['name'] = $full_name; 
+       $_SESSION['user_name'] = $username;
+        header('location:dashboard.php');
+   // echo "<script>window.location.href='dashboard.php';</script>";
     }else{
         header('location:index.php');
     }
