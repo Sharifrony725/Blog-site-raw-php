@@ -1,19 +1,18 @@
-
 <?php
-//$db = mysqli_connect("localhost","root","","blog-site");
+require_once'db_config.php';
 if(isset($_POST['login'])){
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $username = mysqli_real_escape_string($db_connection, $_POST['username']);
+  $password = mysqli_real_escape_string($db_connection, $_POST['password']);
   
   $sql = "SELECT * FROM users WHERE username='$username' AND password= '$password'";
-    $run = mysqli_query($db , $sql);
+    $run = mysqli_query($db_connection , $sql);
     if(mysqli_num_rows($run) ==1){
      
-      $row = mysqli_fetch_assoc($run);
-     //session_start();
-      $_SESSION['user_id'] = $row['id'];
-      $_SESSION['name'] = $row['name']; 
-      $_SESSION['user_name'] = $row['username'];
+    //   $row = mysqli_fetch_assoc($run);
+    //  //session_start();
+    //   $_SESSION['user_id'] = $row['id'];
+    //   $_SESSION['name'] = $row['name']; 
+    //   $_SESSION['user_name'] = $row['username'];
    echo "<script>window.location.href='dashboard.php';</script>";
 
   }else{
@@ -21,6 +20,7 @@ if(isset($_POST['login'])){
       echo $loginError;
   }
  }
+ exit;
 //add-category
 if(isset($_POST['add-category'])){
   $category_name = $_POST['category_name'];
