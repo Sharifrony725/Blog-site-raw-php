@@ -2,7 +2,7 @@
 require_once'db_config.php';
 if(isset($_POST['login'])){
   $username = mysqli_real_escape_string($db_connection, $_POST['username']);
-  $password = mysqli_real_escape_string($db_connection, $_POST['password']);
+  $password = mysqli_real_escape_string($db_connection, md5($_POST['password']));
   
   $sql = "SELECT * FROM users WHERE username='$username' AND password= '$password'";
     $run = mysqli_query($db_connection , $sql);
