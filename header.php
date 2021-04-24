@@ -312,9 +312,9 @@
                           <span>Blog</span>
                       </a>
                       <ul class="sub">
-                          <li> <a href="#">Add Blog </a> </li>
+                          <li> <a href="add-blog.php">Add Blog </a> </li>
                           <li> 
-                          <a href="#">Manage Blog</a></li>
+                          <a href="manage-blog.php">Manage Blog</a></li>
                          
                       </ul>
                   </li>

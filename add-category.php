@@ -1,3 +1,4 @@
+<?php     session_start(); ?>
 <?php require_once'header.php';
 //$insert_msg = "Category Save Success";
 ?>
@@ -9,10 +10,11 @@
                               Category Add Form 
                           </header>
                           <div class="card-body">
-         <?php echo $insert_msg; ?>
-                              <form action="credential_check.php" method="POST">
-                              
-                             
+        
+                              <form action="category.php" method="POST">
+        <?php   
+        echo $_SESSION['msg'];
+        ?>
                                   <div class="form-group row">
                                       <label for="category_name" class="col-sm-4 col-form-label">Category Name</label>
                                       <div class="col-sm-8">

@@ -1,21 +1,21 @@
 <?php 
+require_once 'db_config.php';
 
+//add category
 if(isset($_POST['add-category'])){
     $category_name = $_POST['category_name'];
     $status = $_POST['status'];
-    $sql = "INSERT INTO category(category_name, status) VALUES ('$category_name','$status')";
-    $result = mysqli_query($db,$sql);
+  $sql = "INSERT INTO category(category_name, status) VALUES ('$category_name','$status')";
+ $result = mysqli_query($db_connection,$sql);
     if($result){
-      $insert_msg = "Category Save Success";
-      //echo $insert_msg;
+      session_start();
+      $_SESSION['msg'] = "Category Save Success";
   }else{
-     $insert_msg = "Category Not Save";
-     //echo $insert_msg;
+    $_SESSION['msg'] = "Category noy Save";
   }
   echo "<script>window.location.href='add-category.php';</script>";
-  
   }
-  
+  exit;
   
   // manage category
   $sql = "SELECT * FROM category";
