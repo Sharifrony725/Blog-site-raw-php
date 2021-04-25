@@ -15,11 +15,11 @@ if(isset($_POST['add-category'])){
   }
   echo "<script>window.location.href='add-category.php';</script>";
   }
-  exit;
+ 
   
   // manage category
   $sql = "SELECT * FROM category";
-  $result = mysqli_query($db,$sql);
+  $result = mysqli_query($db_connection,$sql);
   $count = mysqli_num_rows($result);
   if($count > 0){
     echo "Data successfully show!";

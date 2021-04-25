@@ -28,22 +28,22 @@
 
 
 <?php  
-while($row = mysqli_fetch_row($result)){
+while($row = mysqli_fetch_assoc($result)){
    $sl = 1;
    $category_name = $row['category_name'];
    $status = $row['status'];
 
   ?>
                                               <tr>
-                                                 <td><?= $sl; ?></td>
-                                                 <td><?=  $row['category_name']  ?></td>
-                                                 <td><?=  $row['status'] ==1 ?'Active' : 'Inactive' ?></td>
+                                                 <td><?php echo $sl; ?></td>
+                                                 <td><?php echo  $row['category_name']  ?></td>
+                                                 <td><?php echo  $row['status'] ==1 ?'Active' : 'Inactive' ?></td>
          <td>
              <?php
               if($row['status']==1){ ?>
-                <a href="status.php?id=<?= $row['id']; ?>&cat=category&inactive=inactive" class="btn btn-info btn-sm"> <i class="fa fa-arrow-down"></i> Inactive</a>
+                <a href="" class="btn btn-info btn-sm"> <i class="fa fa-arrow-down"></i> Inactive</a>
           <?php }else{ ?>
-            <a href="status.php?id=<?= $row['id']; ?>&cat=category&active=active" class="btn btn-primary btn-sm"><i class="fa fa-arrow-up" aria-hidden="true"> Active</i></a>
+            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-arrow-up" aria-hidden="true"> Active</i></a>
        <?php  }  ?>
          
 
