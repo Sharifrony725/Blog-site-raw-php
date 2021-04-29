@@ -1,14 +1,33 @@
-<?php require_once 'header.php';
+<?php 
+session_start();
+require_once 'header.php';
 /**
    * TODO: 
-   * Have to check, the user profile already exist in the user_details by user_id from the $_SESSION['user_id];
+   * Have to check, the user profile already exist in the user_details by user_id rom the $_SESSION['user_id];
    *  If user details have found:
    *  1.  need to show update profile button instead of add profile button
    *  2.  Have to show user details info in the form such institution name, passing year, etc.
    * 
    *  
  */
+require_once'db_config.php';
+$rcv_id = $_GET['id'];
 
+if(isset($rcv_id)){
+$user_id = mysqli_real_escape_string($db_connection,$_SESSION['user_id']);
+$sql = "SELECT * FROM user_details WHERE user_id='$user_id'";
+$result = mysqli_query($db_connection,$sql);
+if(mysqli_num_rows($result) ==1){
+       $row = mysqli_fetch_assoc($result);
+       $_SESSION['user_id'] = $row['user_id'];
+       ?>
+   <button type="submit" class="btn btn-primary" name="update-profile">Update Profile</button>
+<?php  
+}else{
+   echo "not working";
+}
+
+}
 
 ?>
 
