@@ -10,43 +10,50 @@ require_once 'header.php';
    * 
    *  
  */
-require_once'db_config.php';
-$rcv_id = $_GET['id'];
 
-if(isset($rcv_id)){
-$user_id = mysqli_real_escape_string($db_connection,$_SESSION['user_id']);
-$sql = "SELECT * FROM user_details WHERE user_id='$user_id'";
+// import db config in this page
+require_once 'db_config.php';
+// Assign user_id from the session to new variable
+// trim function remove white space from the begining and ending
+$userIdFromSession = trim($_SESSION['user_id']);
+// just mysql select query on the user_details table to retrive user profie information if any.
+$sql = "SELECT * FROM user_details WHERE user_id='$userIdFromSession'";
 $result = mysqli_query($db_connection,$sql);
-if(mysqli_num_rows($result) ==1){
+if(mysqli_num_rows($result) ==1){ // here checking if the user profile information found in the user_details table
+      // profile information found 
        $row = mysqli_fetch_assoc($result);
-       $_SESSION['user_id'] = $row['user_id'];
-       ?>
-   <button type="submit" class="btn btn-primary" name="update-profile">Update Profile</button>
-<?php  
+       // I keep the print_r code for checking that data already found and it's assigned into the $row variable
+      //  echo '<pre>';
+      //  print_r($row);
+      //  echo '</pre>';
+      //  exit;
+      $institutionNameTextFieldValue = $row['education_institution_name'];
+      $passingYearTextFieldValue = $row['pass_year'];
+      $submitButtonName = "Update Profile";
+      $formActionPageName = 'profile_update_action.php';
+
 }else{
-   echo "not working";
+   // we assign these variable value empty string as the user profile information not found in the user_details table
+   $institutionNameTextFieldValue = "";
+   $passingYearTextFieldValue = "";
+   $submitButtonName = "Add Profile";
+   $formActionPageName = 'profile_action.php';
 }
-
-}
-
 ?>
 
-
-
-
-<form action="profile_action.php" method="post" enctype="multipart/form-data">
+<form action="<?php echo $formActionPageName;?>" method="post" enctype="multipart/form-data">
 
 <div class="form-group row">
 <label for="education_institution_name" class="col-sm-4 col-form-label">Education Institution Name</label>
 <div class="col-sm-6">
-    <input name="education_institution_name" type="text" class="form-control" id="education_institution_name" placeholder="Education Institution Name">
+    <input name="education_institution_name"  value ="<?php echo $institutionNameTextFieldValue;?>" type="text" class="form-control" id="education_institution_name" placeholder="Education Institution Name">
    </div>
 </div>
 
 <div class="form-group row">
 <label for="pass_year" class="col-sm-4 col-form-label">Passing Year </label>
 <div class="col-sm-6">
-    <input name="pass_year" type="text" class="form-control" id="pass_year" placeholder="Passing Year">
+    <input name="pass_year" value ="<?php echo $passingYearTextFieldValue;?>" type="text" class="form-control" id="pass_year" placeholder="Passing Year">
    </div>
 </div>
 
@@ -59,7 +66,7 @@ if(mysqli_num_rows($result) ==1){
 
 <div class="form-group row">
  <div class="col-sm-10">
-    <button type="submit" class="btn btn-primary" name="add-profile">Add Profile</button>
+    <button type="submit" class="btn btn-primary" name="add-profile"><?php echo $submitButtonName;?></button>
  </div>
 </div>
 
