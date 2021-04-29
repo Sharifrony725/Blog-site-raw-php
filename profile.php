@@ -1,4 +1,19 @@
-<?php require_once 'header.php';?>
+<?php require_once 'header.php';
+/**
+   * TODO: 
+   * Have to check, the user profile already exist in the user_details by user_id from the $_SESSION['user_id];
+   *  If user details have found:
+   *  1.  need to show update profile button instead of add profile button
+   *  2.  Have to show user details info in the form such institution name, passing year, etc.
+   * 
+   *  
+ */
+
+
+?>
+
+
+
 
 <form action="profile_action.php" method="post" enctype="multipart/form-data">
 
