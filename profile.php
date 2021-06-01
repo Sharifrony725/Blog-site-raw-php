@@ -3,7 +3,7 @@ session_start();
 require_once 'header.php';
 /**
    * TODO: 
-   * Have to check, the user profile already exist in the user_details by user_id rom the $_SESSION['user_id];
+   * Have to check, the user profile already exist in the user_details by user_id from the $_SESSION['user_id];
    *  If user details have found:
    *  1.  need to show update profile button instead of add profile button
    *  2.  Have to show user details info in the form such institution name, passing year, etc.
@@ -16,7 +16,7 @@ require_once 'db_config.php';
 // Assign user_id from the session to new variable
 // trim function remove white space from the begining and ending
 $userIdFromSession = trim($_SESSION['user_id']);
-// just mysql select query on the user_details table to retrive user profie information if any.
+// just mysql select query on the user_details table to retrive user profile information if any.
 $sql = "SELECT * FROM user_details WHERE user_id='$userIdFromSession'";
 $result = mysqli_query($db_connection,$sql);
 if(mysqli_num_rows($result) ==1){ // here checking if the user profile information found in the user_details table
@@ -29,6 +29,7 @@ if(mysqli_num_rows($result) ==1){ // here checking if the user profile informati
       //  exit;
       $institutionNameTextFieldValue = $row['education_institution_name'];
       $passingYearTextFieldValue = $row['pass_year'];
+      $profile_pic = $row['profile_pic'];
       $submitButtonName = "Update Profile";
       $formActionPageName = 'profile_update_action.php';
 
@@ -36,6 +37,7 @@ if(mysqli_num_rows($result) ==1){ // here checking if the user profile informati
    // we assign these variable value empty string as the user profile information not found in the user_details table
    $institutionNameTextFieldValue = "";
    $passingYearTextFieldValue = "";
+   $profile_pic = "";
    $submitButtonName = "Add Profile";
    $formActionPageName = 'profile_action.php';
 }
@@ -57,12 +59,13 @@ if(mysqli_num_rows($result) ==1){ // here checking if the user profile informati
    </div>
 </div>
 
-<div class="form-group row">
+<input type='hidden' id='id' name='id' value="<?php echo $userIdFromSession;?>">
+ <div class="form-group row">
 <label for="file" class="col-sm-4 col-form-label">Profile Picture </label>
 <div class="col-sm-6">
-    <input name="profile_pic" type="file" class="form-control" id="profile_pic">
+    <input name="profile_pic" type="file" value="<?php echo $profile_pic ?>" class="form-control" id="profile_pic">
    </div>
-</div>
+</div> 
 
 <div class="form-group row">
  <div class="col-sm-10">
